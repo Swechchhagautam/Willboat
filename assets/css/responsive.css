@@ -1,0 +1,97 @@
+/*
+  Responsive helper stylesheet
+  - Purpose: Provide robust, non-intrusive responsive overrides for the WILLBOAT project
+  - How to use: edit the breakpoint blocks below. These rules only override where Tailwind
+    utility classes produce fixed sizes that need softening on small/medium screens.
+  - Note: This file intentionally contains explanatory comments so you can tune behavior.
+*/
+
+/* Global box-sizing + fluid media */
+*{box-sizing:border-box}
+img, picture, video { max-width:100%; height:auto; display:block; }
+
+/* Prevent horizontal overflow introduced by large transforms or long words */
+html,body{overflow-x:hidden}
+
+/* --- Hero section: make background image and layered image responsive --- */
+/* The hero contains two image sources: a CSS background (Tailwind bg-[url()]) and
+   a positioned <img class="hero-bg-strong">. We target both to ensure coverage. */
+#home{min-height:55vh;height:auto;padding:3rem 1rem}
+#home{background-position:center center;background-size:cover}
+
+/* Ensure the positioned hero image fills the area and behaves like background-size:cover */
+#home img.hero-bg-strong, #home img[id^="hero-bg-img"]{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;
+  transform-origin:center center;transition:transform .3s ease,filter .3s ease;
+}
+
+/* Desktop default: slightly dreamy blur/scale (matches original design intent) */
+@media (min-width:1025px){
+  #home{min-height:85vh}
+  #home img.hero-bg-strong{transform:scale(1.12);filter:blur(48px) brightness(.75)}
+}
+
+/* Tablet: reduce scale/blur a bit to keep focal point visible */
+@media (min-width:641px) and (max-width:1024px){
+  #home{min-height:65vh}
+  #home img.hero-bg-strong{transform:scale(1.06);filter:blur(36px) brightness(.82)}
+}
+
+/* Mobile: remove heavy scale/blur so image content is visible and not cropped */
+@media (max-width:640px){
+  #home{min-height:60vh;padding-top:2.25rem;padding-bottom:2.25rem}
+  #home img.hero-bg-strong{transform:scale(1) !important;filter:blur(16px) brightness(.9) !important}
+  /* If there is a small-hero helper class, reset it for mobiles */
+  #hero-bg-img.hero-img-small{transform:none !important}
+}
+
+/* Scale headline and subtitle responsively using clamp for fluid typography */
+#home h1{font-size:clamp(1.8rem,6vw,3.8rem);line-height:1.02}
+#home p{font-size:clamp(1rem,3.2vw,1.6rem)}
+
+/* --- Navigation & header tweaks --- */
+.container{padding-left:1rem;padding-right:1rem}
+
+/* Make site logo smaller on small screens */
+@media (max-width:640px){
+  .site-logo{font-size:1.5rem !important}
+}
+
+/* Mobile menu: ensure it animates from left and covers full width cleanly */
+#mobile-menu{transition:transform .28s cubic-bezier(.2,.9,.2,1);position:absolute;left:0;top:100%;width:100%;}
+
+/* Ensure the mobile CTA and header items remain usable and legible */
+@media (max-width:640px){
+  .get-involved{padding-left:.75rem !important;padding-right:.75rem !important}
+  /* Make forms and content stack vertically and take full width */
+  form#contact-form{width:100%;box-sizing:border-box}
+  .h-48,.h-64,.h-32,.h-20{height:auto !important}
+}
+
+/* --- Grid and card behavior --- */
+/* Override fixed grid column utilities only on very small screens so cards stack */
+@media (max-width:640px){
+  .grid.grid-cols-1, .grid.md\:grid-cols-2, .grid.lg\:grid-cols-3{grid-template-columns:repeat(1, minmax(0,1fr)) !important}
+  .max-w-sm{max-width:100% !important}
+}
+
+@media (min-width:641px) and (max-width:1024px){
+  .grid.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0,1fr)) !important}
+}
+
+/* --- Forms & buttons --- */
+/* Make form inputs comfortably large on touch devices */
+input, textarea, select, button{font-size:1rem}
+@media (max-width:640px){
+  input, textarea{font-size:0.95rem}
+  button.w-full{padding:0.75rem 1rem}
+}
+
+/* --- Footer spacing --- */
+footer{padding-top:2.5rem;padding-bottom:2.5rem}
+
+/* --- Helpful notes for maintainers ---
+   - To change when the hero reduces blur/scale, edit the media query breakpoints above
+   - If you swap the hero image element or class name, update the selectors near the top
+   - These rules aim to be small, targeted overrides to preserve your Tailwind utilities
+*/
