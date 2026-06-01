@@ -1,0 +1,21 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Swechchha Gautam
+N:Gautam;Swechchha;;;
+TITLE:Founder & Coordinator
+ORG:WILLBOAT
+EMAIL;TYPE=WORK:swechchhagautam246@gmail.com
+ADR;TYPE=WORK:;;Sagar;Madhya pradesh;;India
+URL:https://willboat.org
+
+NOTE:Contact coordinator for partnership or volunteering inquiries
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Jitendra Katahre
+N:Katahre;Jitendra;;;
+TITLE:Supporting Member
+ORG:WILLBOAT
+NOTE:Supporting member for community coordination
+END:VCARD

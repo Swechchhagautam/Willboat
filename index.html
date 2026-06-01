@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WILLBOAT- A Unified Platform for NGOs and Volunteers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Simple transition for mobile menu */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Logo styling for WILLBOAT */
+        .site-logo {
+            color: #752020; /* maroon */
+            font-family: 'Georgia', 'Times New Roman', serif;
+            letter-spacing: 0.06em;
+            font-weight: 800;
+            -webkit-font-smoothing: antialiased;
+            text-shadow: 0 1px 0 rgba(0,0,0,0.10);
+        }
+        /* Styling for Get Involved buttons/text */
+        .get-involved {
+            color: #752020; /* maroon */
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            -webkit-font-smoothing: antialiased;
+            background: transparent !important;
+            border: 2px solid #752020;
+            padding-left: 1rem; /* match px-6 roughly */
+            padding-right: 1rem;
+        }
+        .get-involved:hover {
+            background-color: rgba(117,32,32,0.06);
+            box-shadow: 0 4px 12px rgba(117,32,32,0.08);
+        }
+        /* Slightly reduce hero image size for a subtle inset look */
+        #hero-bg-img.hero-img-small {
+            transform: scale(0.95);
+            transform-origin: center;
+            transition: transform 250ms ease;
+        }
+        /* Mission heading color */
+        .mission-title {
+            color: #752020; /* maroon */
+            background: none !important;
+            -webkit-text-fill-color: #752020; /* ensure text shows when bg-clip/text-transparent removed */
+        }
+        /* Desktop navigation link color (chocolate brown) */
+        .nav-link {
+            color: #8B4513; /* saddle brown / chocolate-like */
+            transition: color 180ms ease;
+        }
+        .nav-link:hover,
+        .nav-link:focus {
+            color: #5a2b0e; /* slightly darker brown on hover */
+        }
+        /* Hero content colors */
+        .hero-title {
+            color: #752020; /* maroon */
+            background: none !important;
+            -webkit-text-fill-color: #752020;
+        }
+        .hero-sub {
+            color: #8B4513; /* chocolate brown */
+        }
+        /* Learn More CTA styling (maroon with border) */
+        .learn-more {
+            color: #752020; /* maroon */
+            background: transparent !important;
+            border: 2px solid #752020;
+            padding: 0.5rem 2rem; /* similar to px-8 py-3 */
+            border-radius: 9999px; /* rounded-full */
+            font-weight: 600;
+            display: inline-block;
+            transition: background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+        }
+        .learn-more:hover {
+            background-color: rgba(117,32,32,0.06);
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 0 6px 18px rgba(117,32,32,0.06);
+        }
+        /* Lavender hero background */
+        .hero-bg {
+            background: linear-gradient(180deg, #E6E6FA 0%, #FFFFFF 100%); /* lavender to white */
+        }
+        /* Stronger hero image blur used for soft/dreamy backgrounds */
+        .hero-bg-strong {
+            transform: scale(1.12);
+            -webkit-transform: scale(1.12);
+            filter: blur(48px) brightness(.75);
+            -webkit-filter: blur(48px) brightness(.75);
+            transition: filter 300ms ease, transform 300ms ease;
+        }
+    </style>  
+
+    <script>
+        (function () {
+            emailjs.init("k93D7-C-c6px44wwf");
+        })();
+
+    </script>
+
+    <script>
+        document.getElementById("contact-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            emailjs.sendForm("service_871jx6n", "template_fzotblr", this)
+                .then(() => {
+                    alert("Message Sent!");
+                    this.reset();
+                }, (error) => {
+                    alert("Failed to send message!");
+                    console.log(error);
+                });
+        });
+    </script>
+</head>
+
+<body class="bg-royal blue text-gray-800 antialiased">
+
+    <!-- Header & Navigation -->
+    <header class= "bg-white/90 backdrop-blur-sm shadow-lg sticky top-0 z-50 border-b border-rose-100">
+
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="site-logo text-2xl md:text-3xl font-extrabold">
+                WILLBOAT ^_^
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link font-medium transition-all duration-300 hover:scale-105">Home</a>
+                <a href="#about" class="nav-link font-medium transition-all duration-300 hover:scale-105">About Us</a>
+                <a href="#projects" class="nav-link font-medium transition-all duration-300 hover:scale-105">Projects</a>
+                <a href="#contact" class="nav-link font-medium transition-all duration-300 hover:scale-105">Contact</a>
+            </div>
+
+            <!-- CTA Button -->
+            <a href="#contact"
+                class="hidden md:block get-involved px-6 py-3 rounded-full hover:shadow-lg hover:scale-105 transform transition-all duration-300 font-semibold">
+                Get Involved 🩶
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+        </nav>
+
+            <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg -translate-x-full">
+            <a href="#home" class="block px-6 py-3 text-rose-400 hover:bg-rose-50">Home</a>
+            <a href="#about" class="block px-6 py-3 text-rose-400 hover:bg-rose-50">About Us</a>
+            <a href="#projects" class="block px-6 py-3 text-rose-400 hover:bg-rose-50">Projects</a>
+            <a href="#contact" class="block px-6 py-3 text-rose-400 hover:bg-rose-50">Contact</a>
+            <a href="#contact"
+                class="block px-6 py-4 get-involved text-center rounded-b-lg bg-white/10 transition duration-300">
+                Get Involved 🫱🏻‍🫲🏻
+
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="bg-no-repeat bg-cover bg-[url(https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg)]  relative h-[85vh] min-h-[500px] flex items-center justify-center text-white overflow-hidden">
+            <!-- Background (lavender) -->
+            <div class="absolute inset-0 -z-10 overflow-hidden">
+                <!-- Blurred Background Image layer (behind headline) -->
+                <img src="assets/images/WhatsApp Image 2025-10-29 at 21.41.28_8d9c5f48.jpg" alt="Children participating in community program" loading="lazy"
+                    class="absolute inset-0 w-full h-full object-cover hero-bg-strong -z-10" aria-hidden="true"> 
+                <!-- Soft colored gradient overlay for contrast underneath the content -->
+                <div class="absolute inset-0 bg-gradient-to-br from-rose-700/40 via-pink-600/25 to-white/10 -z-5"></div>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="relative z-10 text-center p-6 animate-fade-in">
+                <h1 class="text-4xl md:text-7xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-rose-200 drop-shadow-2xl">
+                    let's Get Together
+                </h1>
+                <p class="text-xl md:text-3xl mb-8 max-w-2xl mx-auto hero-sub font-light">
+                    A Unified Platform for NGOs and Volunteers.
+                </p>
+                <a href="#about" class="inline-block learn-more">
+                    Learn More
+                </a>
+                <!-- (hero image removed) -->
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 md:py-32 bg-gradient-to-b from-white to-rose-50">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                <!-- Creative image composition (main photo + polaroid overlay + pastel accent) -->
+                <div class="relative flex items-center justify-center">
+                    <div class="relative w-full rounded-3xl bg-gradient-to-tr from-rose-50 via-white to-pink-50 p-4 shadow-2xl transform transition-all duration-500 hover:scale-105 overflow-visible">
+                        <!-- Main team photo -->
+                        <img src="assets/images/Screenshot 2025-10-29 215639.png" alt="Team in a creative meeting" loading="lazy"
+                            class="w-full h-64 sm:h-72 md:h-80 object-cover rounded-xl">
+
+                        <!-- Polaroid-style overlay image (rotated) -->
+                        <div class="absolute -left-6 -top-8 w-28 md:w-36 bg-white rounded-xl p-1 shadow-lg transform rotate-6">
+                            <img src="assets/images/Screenshot 2025-10-28 190324.png" alt="Team candid photo" loading="lazy"
+                                class="w-full h-24 md:h-28 object-cover rounded-sm">
+                        </div>
+
+                        <!-- Pastel decorative accent -->
+                        <div class="absolute -right-8 -bottom-8 w-20 h-20 md:w-28 md:h-28 rounded-full bg-gradient-to-tr from-rose-200 to-pink-200 opacity-80 filter blur-sm"></div>
+
+                        <!-- Small caption -->
+                        <div class="absolute left-4 bottom-3 bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-rose-700">
+                            Creative teamwork in action
+                        </div>
+                    </div>
+                </div>
+
+                <!-- (no CTA here; partners CTA will appear inside the Partners section) -->
+                <!-- Text Content -->
+                <div class="space-y-6">
+                    <span class="inline-block px-4 py-2 bg-gray-100 rounded-full text-gray-700 font-semibold uppercase text-sm tracking-wider">About Us</span>
+                    <h2 class="text-3xl md:text-5xl font-bold mission-title my-4">Our Collaborative Mission</h2>
+                    <p class="text-gray-700 text-lg mb-6 leading-relaxed">
+                        At WILLBOAT,our mission is to bridge the gap between compassion and action. We strive to create
+                        a unified digital platform where people of all backgrounds and ages can come together to support
+                        NGOs, share resources ,volunteer efforts, and innovative ideas to uplift lives across India and
+                        beyond. </p>
+                    <p class="text-gray-700 text-lg mb-6">
+                        We believe that every act of will — no matter how small — has the power to create waves of
+                        change. Through collaboration, transparency, and trust, we aim to build a connected world where
+                        help finds its way to those who need it most.
+                    <p class="text-gray-700 text-lg">
+                        ~Together, we sail toward a better tomorrow. 🚤💫
+                    </p>
+                </div>
+
+                <!-- no inline CTA here — partners CTA will be placed in the Partners section -->
+            </div>
+        </section>
+
+        <!-- Partner NGOs Section -->
+        <section id="partners" class="py-20 md:py-32 bg-gradient-to-b from-blue-50 to-white relative">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0%,transparent_50%)]"></div>
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <h2 class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-rose-400 to-pink-500 bg-clip-text text-transparent mb-6">Our Partners</h2>
+                <p class="text-rose-600 text-xl mb-16 max-w-2xl mx-auto font-light">
+                    We are proud to collaborate with a diverse network of dedicated NGOs.
+                </p>
+                <!-- Partner cards: logo + representative photo -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
+                    <!-- Partner 1: CRY -->
+                    <div class="w-full max-w-sm bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <a href="https://www.cry.org/" target="_blank" rel="noopener noreferrer" class="block group">
+                            <div class="flex items-center justify-center p-4 bg-gradient-to-br from-rose-50 to-white/30">
+                                <img src="assets/images/Screenshot 2025-10-28 190324.png" alt="CRY - Child Rights and You Logo"
+                                    class="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                            </div>
+                            <div class="h-40 overflow-hidden">
+                                <img src="assets/images/WhatsApp Image 2025-10-29 at 21.41.28_8d9c5f48.jpg" alt="CRY program photo"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            </div>
+                            <div class="p-4 text-center">
+                                <h4 class="text-sm font-semibold text-rose-700">CRY — Child Rights & Education</h4>
+                                <p class="text-xs text-rose-500 mt-1">Protecting children and supporting education</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Partner 2: Akshaya Patra -->
+                    <div class="w-full max-w-sm bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <a href="https://www.akshayapatra.org/" target="_blank" rel="noopener noreferrer" class="block group">
+                            <div class="flex items-center justify-center p-4 bg-gradient-to-br from-rose-50 to-white/30">
+                                <img src="assets/images/Screenshot 2025-10-28 190455.png" alt="Akshaya Patra Logo"
+                                    class="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                            </div>
+                            <div class="h-40 overflow-hidden">
+                                <img src="assets/images/Screenshot 2025-10-28 190455.png" alt="Akshaya Patra program photo"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            </div>
+                            <div class="p-4 text-center">
+                                <h4 class="text-sm font-semibold text-rose-700">Akshaya Patra — Mid-Day Meals</h4>
+                                <p class="text-xs text-rose-500 mt-1">Nutrition programs for school children</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Partner 3: HelpAge India -->
+                    <div class="w-full max-w-sm bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <a href="https://www.helpageindia.org/" target="_blank" rel="noopener noreferrer" class="block group">
+                            <div class="flex items-center justify-center p-4 bg-gradient-to-br from-rose-50 to-white/30">
+                                <img src="assets/images/Screenshot 2025-10-28 190756.png" alt="HelpAge India Logo"
+                                    class="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                            </div>
+                            <div class="h-40 overflow-hidden">
+                                <img src="assets/images/Screenshot 2025-10-28 190756.png"HelpAge programs photo"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            </div>
+                            <div class="p-4 text-center">
+                                <h4 class="text-sm font-semibold text-rose-700">HelpAge India — Elder Care</h4>
+                                <p class="text-xs text-rose-500 mt-1">Healthcare and support for seniors</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Partner 4: Goonj -->
+                    <div class="w-full max-w-sm bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <a href="https://goonj.org/" target="_blank" rel="noopener noreferrer" class="block group">
+                            <div class="flex items-center justify-center p-4 bg-gradient-to-br from-rose-50 to-white/30">
+                                <img src="assets/images/WhatsApp Image 2025-10-29 at 21.41.28_8d9c5f48.jpg" alt="Goonj Logo"
+                                    class="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                            </div>
+                            <div class="h-40 overflow-hidden">
+                                <img src="assets/images/Screenshot 2025-10-29 215639.png" alt="Goonj programs photo"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            </div>
+                            <div class="p-4 text-center">
+                                <h4 class="text-sm font-semibold text-rose-700">Goonj — Relief & Development</h4>
+                                <p class="text-xs text-rose-500 mt-1">Community-based relief and resource mobilization</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 'Many more' CTA inside Partners container (after partner cards) -->
+                <div class="mt-10 flex justify-center">
+                    <a href="https://www.mohanfoundation.org/ngos-list.asp?page=3&startpage=1&city=&state=&searchname=&gad_source=1&gad_campaignid=22430225698&gbraid=0AAAAADoyiChaZuCs3DU3W8CkL6I3rkSSU&gclid=Cj0KCQiAubrJBhCbARIsAHIdxD-umsyxlzZZKFfMLCvX9o3U-YsWzQz0U66UrwmG_SHHAK3pOU7hwcgaAi7mEALw_wcB" target="_blank" class="inline-flex items-center gap-3 bg-gradient-to-r from-rose-300 to-pink-400 text-white px-6 py-3 rounded-full shadow-xl hover:scale-105 transform transition-all duration-300 font-semibold" aria-label="See many more partners">
+                        <span>Many more</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-90" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-rose-600 mb-4">Joint Initiatives</h2>
+                    <p class="text-rose-600 text-lg max-w-2xl mx-auto">
+                        Explore the projects we're working on together to make a difference.
+                    </p>
+                </div>
+                <!-- Projects Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="bg-white rounded-lg shadow-xl overflow-hidden flex flex-col">
+                        <div class="h-48 bg-gradient-to-br from-rose-50 to-rose-100 flex items-center justify-center p-6">
+                            <img src="https://cellfoundation.in/wp-content/uploads/2024/09/donate-poster-1536x768.jpg" alt="CRY Project"
+                                class="h-32 w-auto object-contain transition-transform duration-300 hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-rose-600 mb-2">Helping in Education & Child Rights</h3>
+                            <p class="text-rose-600 mb-4 flex-grow">
+                                Working with CRY to protect child rights and provide quality education in 50+ villages 
+                                across India. Currently supporting 10,000+ children with education and protection services.
+                                Join us in expanding this transformative project.
+                            </p>
+                            <a href="https://in.childhelpfoundation.in/index.php/Media/blog" 
+                            target="_blank" "text-rose-500 font-medium hover:text-rose-700 self-start">Join as Mentor
+                                &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="bg-white rounded-lg shadow-xl overflow-hidden flex flex-col">
+                        <div class="h-48 bg-gradient-to-br from-rose-50 to-rose-100 flex items-center justify-center p-6">
+                            <img src="data:image/jpeg;base64,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" alt="Akshaya Patra Project"
+                                class="h-32 w-auto object-contain transition-transform duration-300 hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-rose-600 mb-2">Donation For Cloths, Toys.. etc</h3>
+                            <p class="text-rose-600 mb-4 flex-grow">
+                                Partnering with Akshaya Patra Foundation to provide nutritious meals and establish digital
+                                learning centers. Supporting 1000+ students monthly with food security and education resources.
+                            </p>
+                            <a href="https://youngscholarz.com/11-ngos-supporting-girls-women-in-india/"
+                            target="_blank" class="text-rose-500 font-medium hover:text-rose-700 self-start">Learn more &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Project Card 3 -->
+                    <div class="bg-white rounded-lg shadow-xl overflow-hidden flex flex-col">
+                        <div class="h-48 bg-gradient-to-br from-rose-50 to-rose-100 flex items-center justify-center p-6">
+                            <img src="https://static.wixstatic.com/media/607a03_53b01beb378a4a41b588f9965fd023df~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/607a03_53b01beb378a4a41b588f9965fd023df~mv2.jpg" alt="HelpAge India Project"
+                                class="h-32 w-auto object-contain transition-transform duration-300 hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-rose-600 mb-2">Donate Hair For Cancer Patients</h3>
+                            <p class="text-rose-600 mb-4 flex-grow">
+                                Collaborating with HelpAge India to provide essential healthcare and companionship 
+                                to elderly citizens. Our network of 200+ volunteers conducts regular home visits 
+                                and organizes health camps. Make a difference in a senior's life today.
+                            </p>
+                            <a href="https://give.do/blog/10-cancer-care-ngos-in-india-helping-poor-to-fight-cancer/" target="_blank" class="text-rose-500 font-medium hover:text-rose-700 self-start">Become a Volunteer
+                                &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+    <section id="contact" class="py-20 md:py-32 bg-gradient-to-br from-blue-800 via-blue-700 to-blue-900 text-white relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1)_0%,transparent_60%)]"></div>
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+                <!-- Text + coordinator contact card -->
+                <div class="space-y-8">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">Get Involved</h2>
+                    <p class="text-blue-100 text-xl mb-6 leading-relaxed">
+                        Whether you're an NGO looking to partner, a corporation interested in sponsorship, or an
+                        individual wanting to volunteer, we'd love to hear from you.
+                    </p>
+                    <p class="text-blue-100 text-xl leading-relaxed">
+                        Fill out the form, and a member of our coordination team will get back to you shortly.
+                    </p>
+
+                    <!-- Coordinator contact card (operator details) -->
+                    <div class="mt-4 flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-4 max-w-md">
+                        <!-- Photo removed by request -->
+                        <div class="h-20 w-20 rounded-full bg-gradient-to-tr from-rose-300 to-pink-300 flex items-center justify-center text-white font-semibold shadow-md">
+                            SG
+                        </div>
+                        <div class="flex-1 text-left">
+                            <div class="flex items-center justify-between gap-4">
+                                <div>
+                                    <div class="text-sm font-semibold text-white">Swechchha Gautam</div>
+                                    <div class="text-xs text-blue-100/80">Founder & Coordinator</div>
+                                    <div class="text-xs text-blue-100/70 mt-1">Supported by <strong class="text-white">Jitendra Katahre</strong> — Supporting Member</div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3 text-sm text-blue-100/80 space-y-1">
+                                <div><strong>Email:</strong> <a href="mailto:swechchhagautam246@gmail.com" class="text-rose-100">swechchhagautam246@gmail.com</a></div>
+                                <div><strong>Location:</strong> <span class="text-rose-100">India</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Form -->
+                <form id="contact-form" class="bg-white/10 backdrop-blur-md text-white p-8 rounded-2xl shadow-2xl border border-white/10">
+                    <h3 class="text-2xl font-bold text-white mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">Send Us a Message</h3>
+                    <div class="mb-6 group">
+                        <label for="name" class="block text-sm font-medium mb-2 text-blue-100">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name"
+                            class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 text-white placeholder-blue-200/50">
+                    </div>
+                    <div class="mb-6 group">
+                        <label for="email" class="block text-sm font-medium mb-2 text-blue-100">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email"
+                            class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 text-white placeholder-blue-200/50">
+                    </div>
+                    <div class="mb-6 group">
+                        <label for="message" class="block text-sm font-medium mb-2 text-blue-100">Message</label>
+                        <textarea id="message" name="message" rows="4" required placeholder="How can we help?"
+                            class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 text-white placeholder-blue-200/50"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-blue-400 to-blue-600 text-white py-4 px-6 rounded-lg hover:from-blue-500 hover:to-blue-700 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] font-medium text-lg shadow-lg hover:shadow-xl">
+                        Send Message
+                    </button>
+                    <p id="form-success" class="text-emerald-400 mt-4 hidden text-center font-medium">✨ Thank you! Your message has been sent successfully.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- About -->
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-4">NGO Collab</h4>
+                    <p class="text-gray-400">
+                        A platform for non-governmental organizations to unite, share, and amplify their impact.
+                    </p>
+                </div>
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="hover:text-white">About Us</a></li>
+                        <li><a href="#partners" class="hover:text-white">Partners</a></li>
+                        <li><a href="#projects" class="hover:text-white">Projects</a></li>
+                        <li><a href="#contact" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Social icons removed — user has no social accounts -->
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+                &copy; 2025 NGO Collaboration Hub. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('-translate-x-full');
+        });
+
+        // Close menu when a link is clicked
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                mobileMenu.classList.add('-translate-x-full');
+            }
+        });
+
+        // Contact Form Submission (Mock)
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent actual submission
+
+            // Show success message
+            formSuccess.classList.remove('hidden');
+
+            // Clear form
+            contactForm.reset();
+
+            // Hide success message after 3 seconds
+            setTimeout(() => {
+                formSuccess.classList.add('hidden');
+            }, 3000);
+        });
+                // (hero image upload removed)
+    </script>
+</body>
+
+</html>
